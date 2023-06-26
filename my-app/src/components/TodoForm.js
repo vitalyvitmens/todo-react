@@ -1,6 +1,6 @@
 import styles from '../app.module.css'
 
-export const TodoForm = ({ handleSubmit, todo, editId, setTodo }) => {
+export const TodoForm = ({ handleSubmit, todo, setTodo, requestAddTodo }) => {
 	return (
 		<form className={styles.todoForm} onSubmit={handleSubmit}>
 			<input
@@ -8,7 +8,9 @@ export const TodoForm = ({ handleSubmit, todo, editId, setTodo }) => {
 				value={todo}
 				onChange={(e) => setTodo(e.target.value)}
 			/>
-			<button type="submit"> {editId ? 'Edit' : 'Go'}</button>
+			<button type="submit" onClick={requestAddTodo}>
+				Go
+			</button>
 		</form>
 	)
 }

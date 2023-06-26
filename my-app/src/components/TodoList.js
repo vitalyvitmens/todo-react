@@ -1,15 +1,32 @@
 import styles from '../app.module.css'
 
-export const TodoList = ({ todos, handleDelete, handleEdit }) => {
+export const TodoList = ({
+	todos,
+	requestUpdateTodo,
+	requestDeleteTodo,
+	todo,
+	setTodo,
+}) => {
 	return (
 		<ul className={styles.allTodos}>
 			{todos.map((t) => (
-				<li className={styles.singleTodo}>
-					<span className={styles.todoText} key={t.id}>
-						{t.todo}
+				<li className={styles.singleTodo} key={t.id}>
+					<span className={styles.todoText}>
+						{t.id}. {t.title}
 					</span>
-					<button onClick={() => handleEdit(t.id)}>Edit</button>
-					<button onClick={() => handleDelete(t.id)}>Delete</button>
+					<button
+						onClick={() => {
+							if (todo === '') {
+								setTodo(t.title)
+							} else {
+								requestUpdateTodo(t.id)
+								setTodo('')
+							}
+						}}
+					>
+						Edit
+					</button>
+					<button onClick={() => requestDeleteTodo(t.id)}>Delete</button>
 				</li>
 			))}
 		</ul>
