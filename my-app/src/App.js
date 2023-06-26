@@ -84,9 +84,7 @@ export const App = () => {
 				)
 				setRefreshTodos(!refreshTodos)
 			})
-			.finally(() => {
-				setIsUpdating(false)
-			})
+			.finally(() => setIsUpdating(false))
 	}
 
 	const handleSubmit = (e) => {
@@ -117,11 +115,11 @@ export const App = () => {
 	// 	setTodos([...delTodo])
 	// }
 
-	const handleEdit = (id) => {
-		const editTodo = todos.find((i) => i.id === id)
-		setTodo(editTodo.todo)
-		setEditId(id)
-	}
+	// const handleEdit = (id) => {
+	// 	const editTodo = todos.find((i) => i.id === id)
+	// 	setTodo(editTodo.todo)
+	// 	setEditId(id)
+	// }
 
 	return (
 		<div className={styles.App}>
@@ -131,9 +129,10 @@ export const App = () => {
 					handleSubmit={handleSubmit}
 					todo={todo}
 					editId={editId}
-					handleEdit={handleEdit}
+					// handleEdit={handleEdit}
 					setTodo={setTodo}
 					requestAddTodo={requestAddTodo}
+					isUpdating={isUpdating}
 				/>
 
 				<TodoList
@@ -142,6 +141,7 @@ export const App = () => {
 					setTodo={setTodo}
 					requestUpdateTodo={requestUpdateTodo}
 					requestDeleteTodo={requestDeleteTodo}
+					setIsUpdating={setIsUpdating}
 				/>
 			</div>
 		</div>

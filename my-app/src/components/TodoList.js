@@ -6,6 +6,7 @@ export const TodoList = ({
 	requestDeleteTodo,
 	todo,
 	setTodo,
+	setIsUpdating,
 }) => {
 	return (
 		<ul className={styles.allTodos}>
@@ -15,8 +16,10 @@ export const TodoList = ({
 						{t.id}. {t.title}
 					</span>
 					<button
+						className={!todo ? styles.btnYellow : styles.btnGreen}
 						onClick={() => {
 							if (todo === '') {
+								setIsUpdating(true)
 								setTodo(t.title)
 							} else {
 								requestUpdateTodo(t.id)
@@ -24,9 +27,14 @@ export const TodoList = ({
 							}
 						}}
 					>
-						Edit
+						Изменить
 					</button>
-					<button onClick={() => requestDeleteTodo(t.id)}>Delete</button>
+					<button
+						className={styles.btnRed}
+						onClick={() => requestDeleteTodo(t.id)}
+					>
+						Удалить
+					</button>
 				</li>
 			))}
 		</ul>
